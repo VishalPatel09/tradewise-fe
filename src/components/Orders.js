@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { VerticalGraph } from "./VerticalGraph";
+import TopBar from "./TopBar";
+import { GeneralContextProvider } from "./GeneralContext";
+import WatchList from "./WatchList";
 
 const Orders = () => {
   const [allOrders, setAllOrders] = useState([]);
@@ -25,6 +28,16 @@ const Orders = () => {
     ],
   };
   return (
+    <>
+<TopBar  />
+
+<div className="dashboard-container"> 
+
+<GeneralContextProvider>
+<WatchList />
+</GeneralContextProvider> 
+<div className="content">
+
     <div className="orders">
       <div className="no-orders">
         {allOrders && allOrders.length > 0 ?
@@ -77,6 +90,9 @@ const Orders = () => {
 
 <VerticalGraph data={data} />
     </div>
+    </div>
+    </div>
+    </>
   );
 };
 

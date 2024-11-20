@@ -1,10 +1,14 @@
 import React from "react";
-
+import {useLocation, useNavigate} from 'react-router-dom';
+import TopBar from "./TopBar";
 const Summary = () => {
+  
   return (
-    <>
+   
+<>
+    
       <div className="username">
-        <h6>Hi, User!</h6>
+        <h6>user</h6>
         <hr className="divider" />
       </div>
 

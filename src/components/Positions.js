@@ -1,9 +1,21 @@
 import React from "react";
 
 import { positions } from "../data/data";
+import { GeneralContextProvider } from "./GeneralContext";
+import TopBar from "./TopBar";
+import WatchList from "./WatchList";
 
 const Positions = () => {
   return (
+    <>
+    <TopBar/>
+    
+    <div className="dashboard-container"> 
+    
+    <GeneralContextProvider>
+    <WatchList/>
+    </GeneralContextProvider> 
+    <div className="content">
     <>
       <h3 className="title">Positions ({positions.length})</h3>
 
@@ -41,6 +53,9 @@ const Positions = () => {
           })}
         </table>
       </div>
+    </>
+    </div>
+    </div>
     </>
   );
 };

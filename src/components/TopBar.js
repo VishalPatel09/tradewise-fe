@@ -1,5 +1,6 @@
 import React from 'react';
 import Menu from './Menu';
+import Menus from './Menu';
 const TopBar = () => {
     return (
         <div className = 'topbar-container'>
@@ -16,7 +17,7 @@ const TopBar = () => {
                      
             </div>
         </div>
-        <Menu />
+        <Menus />
         </div>
     );
 };

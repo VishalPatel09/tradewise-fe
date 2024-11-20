@@ -1,8 +1,9 @@
+import { Avatar, Box, Typography, Menu, MenuItem } from '@mui/material';
 import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 
-const Menu = () => {
+const Menus = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
@@ -16,7 +17,22 @@ const Menu = () => {
 
   const menuClass = "menu";
   const activeMenuClass = "menu selected";
+  const [anchorEl, setAnchorEl] = useState(null);
 
+  const handleMouseEnter = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMouseLeave = () => {
+    setAnchorEl(null);
+  };
+const navi = useNavigate()
+  const handleSignOut = () => {
+    localStorage.removeItem('username');
+    setAnchorEl(null)
+    navi('/');
+  };
+  const username = localStorage.getItem('username');
   return (
     <div className="menu-container">
       <img src="logo.png" style={{ width: "50px" }} />
@@ -25,7 +41,7 @@ const Menu = () => {
           <li>
             <Link
               style={{ textDecoration: "none" }}
-              to="/"
+              to="/home"
               onClick={() => handleMenuClick(0)}
             >
               <p className={selectedMenu === 0 ? activeMenuClass : menuClass}>
@@ -69,7 +85,7 @@ const Menu = () => {
           <li>
             <Link
               style={{ textDecoration: "none" }}
-              to="funds"
+              to="/funds"
               onClick={() => handleMenuClick(4)}
             >
               <p className={selectedMenu === 4 ? activeMenuClass : menuClass}>
@@ -77,27 +93,50 @@ const Menu = () => {
               </p>
             </Link>
           </li>
-          <li>
-            <Link
-              style={{ textDecoration: "none" }}
-              to="/apps"
-              onClick={() => handleMenuClick(6)}
-            >
-              <p className={selectedMenu === 6 ? activeMenuClass : menuClass}>
-                Apps
-              </p>
-            </Link>
-          </li>
+          
         </ul>
         <hr />
-        <div className="profile" onClick={handleProfileClick}>
+        {/* <div className="profile" onClick={handleProfileClick}>
           <div className="avatar">ZU</div>
           <p className="username">USERID</p>
-        </div>
-     
+        </div> */}
+     <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        cursor: 'pointer',
+        position: 'relative',
+      }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <Avatar sx={{ bgcolor: '#007bff', marginRight: 1 }}>TW</Avatar>
+      <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+        {username}
+      </Typography>
+
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMouseLeave}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        PaperProps={{
+          onMouseLeave: handleMouseLeave,
+        }}
+      >
+        <MenuItem onClick={handleSignOut}>Log Out</MenuItem>
+      </Menu>
+    </Box>
       </div>
     </div>
   );
 };
 
-export default Menu;
+export default Menus;

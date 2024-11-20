@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios, { all } from "axios";
 import { VerticalGraph } from "./VerticalGraph";
+import TopBar from "./TopBar";
+import { GeneralContextProvider } from "./GeneralContext";
+import WatchList from "./WatchList";
 
 // import { holdings } from "../data/data";
 
@@ -46,6 +49,15 @@ const Holdings = () => {
 
   return (
     <>
+    <TopBar/>
+    
+    <div className="dashboard-container"> 
+    
+    <GeneralContextProvider>
+    <WatchList/>
+    </GeneralContextProvider> 
+    <div className="content">
+    <>
       <h3 className="title">Holdings ({allHoldings.length})</h3>
 
       <div className="order-table">
@@ -68,6 +80,7 @@ const Holdings = () => {
             const dayClass = stock.isLoss ? "loss" : "profit";
 
             return (
+             
               <tr key={index}>
                 <td>{stock.name}</td>
                 <td>{stock.qty}</td>
@@ -105,6 +118,11 @@ const Holdings = () => {
       </div>
       <VerticalGraph data={data} />
     </>
+    </div>
+    </div>
+    
+    </>
+   
   );
 };
 

@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 
+
 }
 
 code {
@@ -841,5 +843,4 @@ hr {
 .action:hover {
   background-color: rgb(212, 212, 212);
 }
-
 
