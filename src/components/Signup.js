@@ -6,6 +6,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import bg from './bg.jpg';
+import { BASE_URL } from '../constant';
 
 const Signup = () => {
   const [action, setAction] = useState("Login");
@@ -19,7 +20,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       await axios
-        .post("http://localhost:3002/signup", { name, email, password })
+        .post(`${BASE_URL}/signup`, { name, email, password })
         .then((res) => {
           alert('Signup Successful!');
           navigate('/'); // Redirect to login page after signup
@@ -38,7 +39,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       await axios
-        .post("http://localhost:3002/login", { email, password })
+        .post(`${BASE_URL}/login`, { email, password })
         .then((res) => {
           if (res?.data?.success) {
             localStorage.setItem('username', res?.data?.user?.name);

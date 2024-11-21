@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
+import { BASE_URL } from "../constant";
 
 
 function Login() {
@@ -15,7 +16,7 @@ function Login() {
 
         try{
 
-            await axios.post("http://localhost:3002/login",{
+            await axios.post(`${BASE_URL}/login`,{
                 email,password
             })
             .then(res=>{

@@ -5,12 +5,13 @@ import { VerticalGraph } from "./VerticalGraph";
 import TopBar from "./TopBar";
 import { GeneralContextProvider } from "./GeneralContext";
 import WatchList from "./WatchList";
+import { BASE_URL } from "../constant";
 
 const Orders = () => {
   const [allOrders, setAllOrders] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3002/allOrders").then((res) => {
+    axios.get(`${BASE_URL}/allOrders`).then((res) => {
       // console.log(res.data);
       setAllOrders(res.data);
     });

@@ -4,6 +4,7 @@ import { VerticalGraph } from "./VerticalGraph";
 import TopBar from "./TopBar";
 import { GeneralContextProvider } from "./GeneralContext";
 import WatchList from "./WatchList";
+import { BASE_URL } from "../constant";
 
 // import { holdings } from "../data/data";
 
@@ -11,7 +12,7 @@ const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3002/allHoldings").then((res) => {
+    axios.get(`${BASE_URL}/allHoldings`).then((res) => {
       // console.log(res.data);
       setAllHoldings(res.data);
     });
